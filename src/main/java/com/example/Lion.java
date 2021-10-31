@@ -2,8 +2,9 @@ package com.example;
 
 import java.util.List;
 
-public class Lion extends Animal implements Predator {
+public class Lion {
 
+    Predator predator;
     boolean hasMane;
 
     public Lion(String sex) throws Exception {
@@ -16,6 +17,10 @@ public class Lion extends Animal implements Predator {
         }
     }
 
+    public Lion(Feline feline) {
+        this.predator = feline;
+    }
+
     public int getKittens(int kittensCount) {
         return kittensCount;
     }
@@ -24,8 +29,9 @@ public class Lion extends Animal implements Predator {
         return hasMane;
     }
 
-    @Override
     public List<String> eatMeat() throws Exception {
-        return getFood("Хищник");
+        return predator.getFood("Хищник");
     }
 }
+
+//Добавил тестов, не понимаю как добиться 100% покрытия, получилось 90%, не понятно на что еще нужны тесты?

@@ -6,17 +6,17 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class LionTests {
+public class LionTest {
 
     private final String checkedText;
     private final boolean expected;
 
-    public LionTests(String checkedText, boolean expected) {
+    public LionTest(String checkedText, boolean expected) {
         this.checkedText = checkedText;
         this.expected = expected;
     }
 
-    @Parameterized.Parameters // добавили аннотацию
+    @Parameterized.Parameters
     public static Object[][] getMane() {
         return new Object[][] {
                 {"Самец", true},

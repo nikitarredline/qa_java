@@ -12,15 +12,14 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CatTests extends Feline {
+public class CatTest extends Feline {
 
     @Mock
     Feline feline;
 
-    Cat cat = new Cat(feline);
-
     @Test
     public void catSoundTest() {
+        Cat cat = new Cat(feline);
         String actualSound = cat.getSound();
         assertEquals("Мяу", actualSound);
     }
