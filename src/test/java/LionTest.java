@@ -1,41 +1,41 @@
+import com.example.Feline;
 import com.example.Lion;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class)
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
 
-    private final String checkedText;
-    private final boolean expected;
+    @Mock
+    Feline feline;
+    Lion lion;
 
-    public LionTest(String checkedText, boolean expected) {
-        this.checkedText = checkedText;
-        this.expected = expected;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] getMane() {
-        return new Object[][] {
-                {"Самец", true},
-                {"Самка", false},
-        };
+    @Before
+    public void setup() throws Exception {
+        lion = new Lion("Самец", feline);
     }
 
     @Test
-    public void shouldCheckMane() throws Exception {
-        Lion lion = new Lion(checkedText);
-        boolean actual = lion.doesHaveMane();
-        assertEquals(expected, actual);
+    public void lionFoodTest() throws Exception {
+        List<String> mocList = Arrays.asList("Животные", "Птицы", "Рыба");
+        Mockito.when(lion.eatMeat()).thenReturn(mocList);
+        List<String> actualList = lion.eatMeat();
+        List<String> expectedList = Arrays.asList("Животные", "Птицы", "Рыба");
+        assertEquals(expectedList, actualList);
     }
 
     @Test
-    public void kittenLionTest() throws Exception {
-        Lion lion = new Lion("Самец");
+    public void kittenLionTest() {
         int kittensCount = lion.getKittens(1);
         assertEquals(1, kittensCount);
     }
-
 }

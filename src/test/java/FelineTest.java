@@ -1,4 +1,5 @@
 import com.example.Feline;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,9 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class FelineTest {
 
+    Feline feline;
+
+    @Before
+    public void setup() {
+        feline = new Feline();
+    }
+
     @Test
     public void felineFoodTest() throws Exception {
-        Feline feline = new Feline();
         List<String> actualList = feline.eatMeat();
         List<String> expectedList = Arrays.asList("Животные", "Птицы", "Рыба");
         assertEquals(expectedList, actualList);
@@ -18,16 +25,13 @@ public class FelineTest {
 
     @Test
     public void felineFamalyTest() {
-        Feline feline = new Feline();
         String actualFamaly = feline.getFamily();
         assertEquals("Кошачьи", actualFamaly);
     }
 
     @Test
     public void felineKittensTest() {
-        Feline feline = new Feline();
         int actualKittens = feline.getKittens();
         assertEquals(1, actualKittens);
     }
-
 }
